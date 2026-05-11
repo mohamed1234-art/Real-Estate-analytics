@@ -1,0 +1,55 @@
+use AllRealEstate
+
+CREATE TABLE RealEstate_Properties (
+
+    category NVARCHAR(100),
+    property_type NVARCHAR(100),
+    price_egp FLOAT,
+    area_value FLOAT,
+    bedrooms INT,
+    bathrooms INT,
+
+    city NVARCHAR(100),
+    town NVARCHAR(100),
+    district NVARCHAR(100),
+
+    completion_status NVARCHAR(50),
+    listed_date DATETIME,
+    furnished NVARCHAR(20),
+    payment_method NVARCHAR(50),
+
+    property_group NVARCHAR(100),
+    price_category NVARCHAR(50),
+    area_category NVARCHAR(50),
+    ready_status NVARCHAR(50),
+    source_type NVARCHAR(50),
+
+    has_balcony BIT,
+    has_private_pool BIT,
+    has_shared_pool BIT,
+    has_private_garden BIT,
+    has_covered_parking BIT,
+    has_security BIT,
+    has_shared_gym BIT,
+    has_shared_spa BIT,
+    has_maids_room BIT,
+
+    [has_central_a/c] BIT,
+
+    has_built_in_wardrobes BIT,
+    has_kitchen_appliances BIT,
+    has_view_of_water BIT,
+    has_view_of_landmark BIT,
+    has_childrens_pool BIT,
+    has_lobby_in_building BIT,
+
+    amenities_count INT,
+
+    year INT,
+    month INT,
+    month_name NVARCHAR(20),
+    quarter INT,
+    quarter_name NVARCHAR(20),
+
+    price_per_meter FLOAT
+);

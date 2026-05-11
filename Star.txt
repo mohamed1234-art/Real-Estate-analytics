@@ -1,0 +1,104 @@
+use  Real_Estate_Egypt_2026
+
+CREATE TABLE Dim_Category (
+    category_id INT PRIMARY KEY IDENTITY(1,1),
+    category NVARCHAR(100)
+);
+
+CREATE TABLE Dim_PropertyType (
+    property_type_id INT PRIMARY KEY IDENTITY(1,1),
+    property_type NVARCHAR(100),
+    property_group NVARCHAR(100)
+);
+
+CREATE TABLE Dim_Location (
+    location_id INT PRIMARY KEY IDENTITY(1,1),
+    city NVARCHAR(100),
+    town NVARCHAR(100),
+    district NVARCHAR(100)
+);
+
+CREATE TABLE Dim_Status (
+    status_id INT PRIMARY KEY IDENTITY(1,1),
+    completion_status NVARCHAR(50),
+    ready_status NVARCHAR(50),
+    poririty_status NVARCHAR(50)
+);
+
+CREATE TABLE Dim_Date (
+    date_id INT PRIMARY KEY,   -- مثال: 20240115
+    listed_date DATETIME,
+    year INT,
+    month INT,
+    month_name NVARCHAR(20),
+    quarter INT,
+    quarter_name NVARCHAR(20)
+);
+
+CREATE TABLE Dim_Pricing (
+    pricing_id INT PRIMARY KEY IDENTITY(1,1),
+    price_category NVARCHAR(50)
+);
+
+CREATE TABLE Dim_Area (
+    area_id INT PRIMARY KEY IDENTITY(1,1),
+    area_category NVARCHAR(50)
+);
+
+CREATE TABLE Dim_Furnished (
+    furnished_id INT PRIMARY KEY IDENTITY(1,1),
+    furnished NVARCHAR(20)  -- Yes / No / Semi
+);
+
+CREATE TABLE Dim_Payment (
+    payment_id INT PRIMARY KEY IDENTITY(1,1),
+    payment_method NVARCHAR(50)  -- Cash / Installments
+);
+
+CREATE TABLE Fact_Properties (
+    property_id INT PRIMARY KEY IDENTITY(1,1),
+
+    category_id INT,
+    property_type_id INT,
+    location_id INT,
+    status_id INT,
+    date_id INT,
+    pricing_id INT,
+    area_id INT,
+    furnished_id INT,
+    payment_id INT,
+
+    price_egp FLOAT,
+    price_per_meter FLOAT,
+    area_value FLOAT,
+    bedrooms INT,
+    bathrooms INT,
+    has_balcony BIT,
+    has_private_pool BIT,
+    has_shared_pool BIT,
+    has_private_garden BIT,
+    has_covered_parking BIT,
+    has_security BIT,
+    has_shared_gym BIT,
+    has_shared_spa BIT,
+    has_maids_room BIT,
+    has_central_a_c BIT,
+    has_built_in_wardrobes BIT,
+    has_kitchen_appliances BIT,
+    has_view_of_water BIT,
+    has_view_of_landmark BIT,
+    has_childrens_pool BIT,
+    has_lobby_in_building BIT,
+    amenities_count INT
+
+    -- العلاقات
+    FOREIGN KEY (category_id) REFERENCES Dim_Category(category_id),
+    FOREIGN KEY (property_type_id) REFERENCES Dim_PropertyType(property_type_id),
+    FOREIGN KEY (location_id) REFERENCES Dim_Location(location_id),
+    FOREIGN KEY (status_id) REFERENCES Dim_Status(status_id),
+    FOREIGN KEY (date_id) REFERENCES Dim_Date(date_id),
+    FOREIGN KEY (pricing_id) REFERENCES Dim_Pricing(pricing_id),
+    FOREIGN KEY (area_id) REFERENCES Dim_Area(area_id),
+    FOREIGN KEY (furnished_id) REFERENCES Dim_Furnished(furnished_id),
+    FOREIGN KEY (payment_id) REFERENCES Dim_Payment(payment_id)
+);
